@@ -32,15 +32,7 @@
 
 const int lightSensor = A0;
 
-const int tempSensor = A1;
-
-const int soundSensor = A2;
-
-const int touchSensor = 4;
-
-const int button = 5;
-
-const int rotarySensor = 6;
+const int rotarySensor = 0;
 
 
 
@@ -60,15 +52,6 @@ void setup()
 
     pinMode(lightSensor, INPUT);           
 
-    pinMode(tempSensor, INPUT);
-
-    pinMode(soundSensor, INPUT);
-
-    pinMode(touchSensor, INPUT);
-
-    pinMode(button, INPUT);
-
-    pinMode(rotarySensor, INPUT);
 
 }
 
@@ -92,17 +75,9 @@ void loop()
 
 {
 
-  int light_sensorVal = analogRead(lightSensor);
+  	int light_sensorVal = analogRead(lightSensor);
 
-	int temp_sensorVal = analogRead(tempSensor);
-
-	int sound_sensorVal = analogRead(soundSensor);
-
-	int touch_sensorVal = digitalRead(touchSensor);
-
-	int button_val = digitalRead(button);
-
-	int rotary_sensorVal = digitalRead(rotarySensor);
+	int motion_sensorVal = digitalRead(rotarySensor);
 
 
 
@@ -118,33 +93,9 @@ void loop()
 
 
 
-	Serial.print("Temperature | ");
+	Serial.print("Motion | ");
 
-	Serial.println(temp_sensorVal);
-
-
-
-	Serial.print("Sound       | ");
-
-	Serial.println(sound_sensorVal);
-
-
-
-	Serial.print("Touch       | ");
-
-	Serial.println(touch_sensorVal);
-
-
-
-	Serial.print("Button      | ");
-
-	Serial.println(button_val);
-
-
-
-	Serial.print("Rotary Angle| ");
-
-	Serial.println(rotary_sensorVal);
+	Serial.println(motion_sensorVal);
 
 	delay(400);
 
