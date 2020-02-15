@@ -1,4 +1,4 @@
-# StayEnlightened
+# StayEnlightened: A Brighter Study Space for Students
 
 1. Background: The lighting in Myhal does not provide an ideal studying place. There currently exists two problems:
   1. To reduce energy consumption, Myhal uses a motion sensor to detect if there are people. This mechanism is used heavily in the non-popular floors, e.g. 8th floor.  This sensor works well with movement(e.g. when people walk by), however it doesn’t always  account for stationary students. As a result, the lights in Myhal 8th floor will completely turn off after 20 minutes if no motion is sensed. The student will then have to get up and wave at the sensor to re-activate the lights. 
