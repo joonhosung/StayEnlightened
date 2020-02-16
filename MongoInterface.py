@@ -56,7 +56,3 @@ class MongoInterface:
             {"$set":newData}, 
             upsert=True)
 
-        # if result['current'] == number:
-        #     return True
-        # else: return False
-        
