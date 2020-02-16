@@ -1,7 +1,10 @@
 ## reads in data from Arduino
 import serial
 from time import sleep
-ser = serial.Serial('COM6', 9600) # Establish the connection on a specific port
+
+# have to specify port name below
+port='COM6'
+ser = serial.Serial(port, 9600) # Establish the connection on a specific port
 i=0
 while i<10:
 	
