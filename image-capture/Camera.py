@@ -11,7 +11,7 @@ class Camera():
 		# this function receives no parameters
 		# returns cv2 im file (so the one we passed into imsave)
 		
-		retval	=	cv.VideoCapture.grab()
+		retval	=	cv2.VideoCapture.grab()
 
 
 		check, frame = self.webcam.read()
