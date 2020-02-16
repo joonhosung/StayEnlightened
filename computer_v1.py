@@ -20,6 +20,7 @@ def check_motion(state, turnOff):
 
 		# if serial signals to start camera [1], return to external
 		if rsv=='1':
+			print("Motion detected! Turning on Camera.")
 			state=True
 			
 	elif state==True:
@@ -32,6 +33,7 @@ def check_motion(state, turnOff):
 			# switch state to inactive
 			state=False
 			write_serial(ser)
+			print("No humans... Turning camera off")
 			
 		
 

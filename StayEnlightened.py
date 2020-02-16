@@ -59,12 +59,12 @@ class StayEnlightened:
                     if self.currentPeople > 0:
                         off = False
                     elif self.currentPeople == 0:
-                        print("No humans... Turning camera off")
                         off = True
+                        self.camState = False
                 else:
                     self.camState = motion.check_motion(self.camState, off)
                     if self.camState:
-                        print("Motion detected! Turning on Camera.")
+                        
                         off = True
                 print("Updated at:", dateTime)
 
