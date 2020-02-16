@@ -7,18 +7,23 @@ import sys
 import time
 import os
 
-
+sys.path.insert(0, './image-capture/')
+from Camera import Camera
+print("Imported camera")
 
 class StayEnlightened:
     def __init__(self):
         self.jsonPath = os.getcwd() #sys.argv[1]
-        self.imgPath = os.getcwd() #sys.argv[2]
+        self.imgPath = os.getcwd() + '/image-capture/saved_img.jpg' #sys.argv[2]
+        print (self.imgPath)
         self.database = MongoInterface(self.jsonPath)
-        self.people = PeopleCount('myhal/myhal1.jpg')  #self.imgPath
+        self.people = PeopleCount(self.imgPath)  #self.imgPath
+        self.camera = Camera(0,self.imgPath)
         self.currentPeople = 0
         print("Starting...\n\n")
 
     def loop(self):
+        self.camera.capture()
         self.currentPeople = self.people.count_people()
         self.database.updateCurrent(self.currentPeople)
 
