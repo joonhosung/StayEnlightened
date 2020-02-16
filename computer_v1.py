@@ -46,13 +46,14 @@ def check_motion(state, turnOff):
 
 def read_serial(ser):
 	msg=str(ser.readline().strip().decode('ascii')) # reads from Arduino and interpret as ascii
-	print("message: "+msg)
+	print("Reads in from Arduino "+msg)
 	return msg
 
 def write_serial(ser):
         # ser is the serial object; s is the data to be serially transmitted
 	s='c'
 	ser.write(s.encode()) # writes letter to Arduino
+	print("Writes c to Arduino")
 	return True
 
 
