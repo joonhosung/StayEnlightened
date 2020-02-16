@@ -11,7 +11,7 @@ class Camera():
 		# this function receives no parameters
 		# returns cv2 im file (so the one we passed into imsave)
 		if not self.webcam.isOpened():
-    		raise Exception("Could not open video device")
+			raise Exception("Could not open video device")
 
 		check, frame = self.webcam.read()
 		
