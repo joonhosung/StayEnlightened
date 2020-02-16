@@ -1,23 +1,44 @@
-int state=1; // reports state of motion sensor 1 if active, 0 if inactive
+//This code will allow the PIR motion sensor to send updates to:
+// 1. Turn on the camera if motion/people are detected
+// 2. Turn off the camera if no motion is detected.
+
+int pirState=1; // reports state of motion sensor: 1 if active, 0 if inactive
+
+int lightPin = 11; //The "lights" to be controlled
+int motionPin = 13; //Diagnostic Output pin - if motion detected
+int inputPin = 2; //Input pin - the PIR sensor
+int pirState = LOW; //No motion at start
+int movement = 0; //Pin status (HIGH or LOW)
 
 
 void setup(){
+  pinMode(motionPin, OUTPUT); 
+  pinMode(lightPin, OUTPUT);
+  pinMode(inputPin, INPUT);
 	Serial.begin(9600);
-	Serial.println(0);
+	Serial.println(0); //Do we want this here??
 }
 
 void loop(){
-	if (state==1){
+	if (pirState==1){
 		// active state
-
+   
 		// continuously reads in motion sensor value
-		motion=readsensor() /*<---------------fix this with proper pin numbers and syntax--*/
-		if (motion==1){
-			// if motion sensor reports motion detected
+		movement = digitalRead(inputPin); //Read PIR input
+
+    //If motion sensor reports motion detected
+		if (movement == HIGH){ 
+      digitalWrite(lightPin, HIGH); //Turn on the lights.
+      digitalWrite(motionPin, HIGH); //Diagnostic pin - HIGH if PIR triggered.
 			Serial.println(1); // prints a 1 to serial monitor and writes to python
+      //Send serial data to python -> computer_v1.py, which will tell the camera to turn on and take pictures in OpenCV
 			
 			//switch state	
-			state=0;
+			pirState=0; 
+      
+		} else { //No movement
+      digitalWrite(motionPin, LOW); //Turn diagnostic output off.
+      Serial.println(0);
 		}
 
 	}
@@ -25,13 +46,12 @@ void loop(){
 	else{
 		// inactive state: reads in python value of number of people until no one, then turn off lights
 		
-		int num=Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
-		if (num==0){
+		char noPeople = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
+		if (noPeople == 'c'){
 			// no person detected in the frame
-			
+			digitalWrite(lightPin, LOW); // Turn off lights
 			// switch state
-			state=1
-			digitalWrite(); // turn off lights <---------------------turn off LED here
+			pirState=1;
 			
 		}
 	}
