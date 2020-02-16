@@ -31,7 +31,7 @@ def check_motion(state, turnOff):
 		if turnOff:
 			# switch state to inactive
 			state=False
-			write_serial(ser, turnOff)
+			write_serial(ser)
 			
 		
 
@@ -46,13 +46,11 @@ def read_serial(ser):
 	print("message: "+msg)
 	return msg
 
-def write_serial(ser, s):
+def write_serial(ser):
         # ser is the serial object; s is the data to be serially transmitted
-	if s:
-		val = 1
-	elif not s:
-		val = 0
-	ser.write(val.encode()) # writes letter to Arduino
+	s = 'c'
+	ser.write(s.encode()) # writes letter to Arduino
+	
 	return True
 
 
