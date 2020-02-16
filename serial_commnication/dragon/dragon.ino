@@ -41,8 +41,8 @@ void loop(){
   
   } else {
     // inactive state: reads in python value of number of people until no one, then turn off lights
-    delay(100);
-    Serial.println(0); //Ensure that arduino does not write 1/python does not read 1
+    //delay(100);
+    //Serial.println(0); //Ensure that arduino does not write 1/python does not read 1
     digitalWrite(motionPin, LOW); //Diag
     
     char noPeople = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
