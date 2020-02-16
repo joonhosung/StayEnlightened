@@ -23,6 +23,8 @@
        5. User interface: website/app to display current room occupancy. The student can then use that to determine where to study.
    4. Future steps: Predict peak occupancy times and implement smart building.
       As a future step, we could consider using more machine learning algorithms to predict usage of space in Myhal. This is based on the premise that people tend to go to the same space to study at regular times. (Though this may be harder to implement in the makeathon, might only reach an early prototype)
+      
+Documentation on Python-Arduino Serial Communication: https://docs.google.com/document/d/1F516TYp9qw56w44bUsVvy9g6Uo8SrwlXF3STm-RwaHA/edit?usp=sharing
 
 4. References:
       1. https://www.nature.com/articles/s41597-019-0274-4#Sec6
