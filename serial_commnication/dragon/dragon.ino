@@ -31,7 +31,6 @@ void loop(){
       digitalWrite(motionPin, HIGH); //Diagnostic pin - HIGH if PIR triggered.
       Serial.println(1); // prints a 1 to serial monitor and writes to python
       //Send serial data to python -> computer_v1.py, which will tell the camera to turn on and take pictures in OpenCV
-			
       //switch state	
       pirState=0; 
       
@@ -42,8 +41,10 @@ void loop(){
   
   } else {
     // inactive state: reads in python value of number of people until no one, then turn off lights
-    int num = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
-    if (num == 0){
+    digitalWrite(motionPin, LOW); //Diag
+    
+    char noPeople = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
+    if (noPeople == 'c'){
       // no person detected in the frame
       digitalWrite(lightPin, LOW); // Turn off lights
       // switch state
