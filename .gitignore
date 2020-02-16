@@ -1,0 +1,11 @@
+# npm
+node_modules
+build
+npm-debug.log
+.env
+
+# Python
+__pycache__
+
+# MacOS
+.DS_Store
