@@ -1,3 +1,6 @@
-# [START app_yaml]
+# [START client_yaml]
 runtime: nodejs10
-# [END app_yaml]
+instance_class: F4
+service: client
+# [END client_yaml]
+
