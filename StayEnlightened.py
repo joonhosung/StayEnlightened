@@ -40,7 +40,7 @@ class StayEnlightened:
         off = False
         updateRate = 10
         
-        while not off:
+        while True:
             currentTime = time.time()
             timeDiff = currentTime - startTime
             if timeDiff <= updateRate:
@@ -59,10 +59,12 @@ class StayEnlightened:
                     if self.currentPeople > 0:
                         off = False
                     elif self.currentPeople == 0:
+                        print("No humans... Turning camera off")
                         off = True
                 else:
                     self.camState = motion.check_motion(self.camState, off)
                     if self.camState:
+                        print("Motion detected! Turning on Camera.")
                         off = True
                 print("Updated at:", dateTime)
 
