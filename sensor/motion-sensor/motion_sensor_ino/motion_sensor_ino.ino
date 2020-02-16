@@ -19,7 +19,7 @@ void loop() {
   movement = digitalRead(inputPin); //Read input 
   
   if (movement == HIGH) { //If motion detected:
-    //digitalWrite(lightPin, HIGH); //Turn on the lights.
+    digitalWrite(lightPin, HIGH); //Turn on the lights.
     digitalWrite(motionPin, HIGH); //Turn diagnostic output ON
     
     //If previous state was "no motion detected", then change state to "motion detected"
@@ -31,7 +31,16 @@ void loop() {
       //Arduino then enters read mode (starts waiting for Jun Ho’s python/OpenCV to say when NO PEOPLE are detected by the camera)
       //Not writing to python at this time (unidirectional transfer)
       
-
+      //CHECK THIS LINEEEEEEEEEEEEE
+      int num = Serial.read(); //read data from python - how many people in field of view of camera
+      while (num > 0) { //need this while loop? or just the if statement below?
+        //People
+      }
+      if (num == 0) { //If no one present, then start reading from the PIR sensor again.
+        //Turn off the lights
+        digitalWrite(lightPin, LOW); //Turn off the lights.
+        //naturally leaves this loop. And loops main fn. (switches state)
+      }
       
     }
     
