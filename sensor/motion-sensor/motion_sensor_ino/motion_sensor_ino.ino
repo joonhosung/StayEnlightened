@@ -19,13 +19,15 @@ void loop() {
   if (movement == HIGH) { //If motion detected:
     digitalWrite(motionPin, HIGH); //Turn output ON
     if (pirState == LOW) {
-      Serial.println("Motion detected. Switching to camera.");
+      Serial.println(1);
+      //Serial.println("Motion detected. Switching to camera.");
       pirState = HIGH; //Change state.
     }
   } else { //Motion not detected:
     digitalWrite(motionPin, LOW); //Turn output OFF
     if (pirState == HIGH){
-      Serial.println("No motion. Camera off.");
+      Serial.println(0);
+      //Serial.println("No motion. Camera off.");
       pirState = LOW;
     }
   }
