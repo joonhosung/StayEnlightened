@@ -4,11 +4,13 @@ import serial
 from time import sleep
 
 # State: stat of camera
+port='/dev/tty96B0'
+ser = serial.Serial(port, 9600) # Establish the connection on a specific port
+
 def check_motion(state, turnOff):
-	port='/dev/tty96B0'
+	
 	#port='COM6'
 	# have to specify port name below
-	ser = serial.Serial(port, 9600) # Establish the connection on a specific port
 	
 	if state==False:
 		# inactive state
