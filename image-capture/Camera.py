@@ -4,16 +4,20 @@ import cv2
 class Camera():
 	
 	def __init__(self, index, file):
-		self.webcam = cv2.VideoCapture(index)
+		self.webcam = 0
+		self.index = index
 		self.file = file
 
 	def capture(self):
 		# this function receives no parameters
 		# returns cv2 im file (so the one we passed into imsave)
+		self.webcam = cv2.VideoCapture(self.index)
+
+		#Diagnostic
 		if not self.webcam.isOpened():
 			raise Exception("Could not open video device")
 
-		check, frame = self.webcam.read()
+		check, frame = self.webcam.read() #Read in video frame
 		
 		if check:
 			cv2.imshow("Capturing", frame); #grab, decode and return next frame from video
