@@ -38,6 +38,7 @@ void loop(){
       
 		} else { //No movement
       digitalWrite(motionPin, LOW); //Turn diagnostic output off.
+      Serial.println(0);
 		}
 
 	}
@@ -45,12 +46,12 @@ void loop(){
 	else{
 		// inactive state: reads in python value of number of people until no one, then turn off lights
 		
-		int num = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
-		if (num == 0){
+		char noPeople = Serial.read(); /*<----------------------fix with proper pin numbers and syntax--*/
+		if (noPeople == 'c'){
 			// no person detected in the frame
 			digitalWrite(lightPin, LOW); // Turn off lights
 			// switch state
-			pirState=1
+			pirState=1;
 			
 		}
 	}
