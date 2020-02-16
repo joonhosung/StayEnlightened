@@ -4,6 +4,7 @@
 
 int pirState=1; // reports state of motion sensor: 1 if active, 0 if inactive
 
+int lightPin = 11; //The "lights" to be controlled
 int motionPin = 13; //Diagnostic Output pin - if motion detected
 int inputPin = 2; //Input pin - the PIR sensor
 int pirState = LOW; //No motion at start
