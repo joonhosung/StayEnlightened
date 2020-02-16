@@ -39,8 +39,9 @@ class StayEnlightened:
         printed = False
         off = False
         updateRate = 10
-        
+        ser = serial.Serial(port, 9600)
         while True:
+            if(motion.read
             currentTime = time.time()
             timeDiff = currentTime - startTime
             if timeDiff <= updateRate:
@@ -64,8 +65,8 @@ class StayEnlightened:
                 else:
                     self.camState = motion.check_motion(self.camState, off)
                     if self.camState:
-                        
-                        off = True
+                        pass
+                        #off = True
                 print("Updated at:", dateTime)
 
 light = StayEnlightened()

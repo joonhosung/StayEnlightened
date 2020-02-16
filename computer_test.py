@@ -1,23 +1,24 @@
 from computer_v1 import *
-
+from time import sleep
 def main():
-	# call the state function repeatedly
-	state= False
-	turnoff= True
+    # call the state function repeatedly
+    state= False
+    turnoff= True
 
-	i=0
-	while i<8:
-		check_motion(state, turnoff)
-		
-		if i==3:
-			turnoff=False
-			print("Turning on camera outside")
-			
-		if i==5:
-			turnoff=True
-			print("Turning off camera outside")
+    i=0
+    while i<15:
+        sleep(5)
+        state=check_motion(state, turnoff)
+        print("state: ", state)
+        if state==True:
+            print ("camera is on")
+            turnoff=False
 
-		i+=1
+        if i==3:
+            turnoff=True
+            print("Turning off camera outside")
+
+        i+=1
 
 main()	
 				

@@ -26,7 +26,7 @@ def check_motion(state, turnOff):
 	elif state==True:
 		# inactive state
 		# Computer stops reading from serial port
-		# Continously writes to Arduino number of people
+		#n writes to serial port c
 		
 		# checks if turnOff==True
 		if turnOff:
