@@ -41,8 +41,23 @@ getStudyspaceByName = async (req, res) => {
 getStudyspaces = async (req, res) => {
     const db = mongoUtil.getDb();
     studyspacesList = await db.collection('Myhal_Centre').find({})
-    studyspaceJSON = await JSON.stringify(await studyspacesList.toArray())
     return res.json(await studyspacesList.toArray());
+}
+
+getStudyspacesByBuilding = async (req, res) => {
+    const db = mongoUtil.getDb();
+    studyspacesList = await db.collection(req.params.building).find({})
+    return res.json(await studyspacesList.toArray());
+}
+
+getBuildings = async (req, res) => {
+    const db = mongoUtil.getDb();
+    building_collections = await db.listCollections().toArray()
+    buildings = []
+    for await (const building of building_collections) {
+      buildings.push(building["name"])
+    }
+    return res.json(buildings)
 }
 
 module.exports = {
@@ -50,4 +65,6 @@ module.exports = {
     getStudyspaceById,
     getStudyspaceByName,
     defaultstuff,
+    getBuildings,
+    getStudyspacesByBuilding,
 }

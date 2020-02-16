@@ -19,9 +19,17 @@ async function main() {
         await client.connect();
 
         // Make the appropriate DB calls
-        await listDatabases(client);
-        await listAreas(client);
-        await findFloor(client)
+        //await listDatabases(client);
+        //await listAreas(client);
+        //await findFloor(client)
+        building_collections = await client.db('Workspaces').listCollections().toArray()
+        buildings = []
+        for await (const building of building_collections) {
+          buildings.push(building["name"])
+        }
+        await console.log(buildings)
+        //await console.log(building_collections)
+        //await console.log(building_collections[1]["name"])
 
     } catch (e) {
         console.error(e);
