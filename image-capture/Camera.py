@@ -20,7 +20,7 @@ class Camera():
 		check, frame = self.webcam.read() #Read in video frame
 		
 		if check:
-			cv2.imshow("Capturing", frame); #grab, decode and return next frame from video
+			#cv2.imshow("Capturing", frame); #grab, decode and return next frame from video
 			cv2.imwrite(filename=self.file, img = frame) #Optionally save file as .jpg
 		self.webcam.release()
 		cv2.destroyAllWindows()

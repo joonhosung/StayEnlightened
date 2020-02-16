@@ -3,12 +3,16 @@
 from MongoInterface import MongoInterface
 from peoplecount import PeopleCount
 from datetime import datetime
+
 import sys
 import time
 import os
 
 sys.path.insert(0, './image-capture/')
 from Camera import Camera
+
+sys.path.insert(1, './serial_communication/')
+import computer_v1 as motion
 print("Imported camera")
 
 class StayEnlightened:
@@ -20,6 +24,7 @@ class StayEnlightened:
         self.people = PeopleCount(self.imgPath)  #self.imgPath
         self.camera = Camera(0,self.imgPath)
         self.currentPeople = 0
+        self.camState = False
         print("Starting...\n\n")
 
     def loop(self):
@@ -48,7 +53,17 @@ class StayEnlightened:
                 dateTime = datetime.now()
                 startTime = currentTime
                 printed = False
-                self.loop()
+
+                if self.camState:
+                    self.loop()
+                    if self.currentPeople > 0:
+                        off = False
+                    elif self.currentPeople == 0:
+                        off = True
+                else:
+                    self.camState = motion.check_motion(self.camState, off)
+                    if self.camState:
+                        off = True
                 print("Updated at:", dateTime)
 
 light = StayEnlightened()
