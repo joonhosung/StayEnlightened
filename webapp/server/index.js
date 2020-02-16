@@ -6,7 +6,7 @@ const cors = require('cors')
 const studyspaceRouter = require('./routes/studyspace-router')
 
 const app = express()
-const apiPort = 3000
+const apiPort = process.env.PORT || 3000
 
 const mongoUtil = require( './mongoUtil' );
 
