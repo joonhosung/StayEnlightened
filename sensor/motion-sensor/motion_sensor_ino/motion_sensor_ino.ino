@@ -27,6 +27,12 @@ void loop() {
       Serial.println(1); //Send serial data to python -> computer.py, which will tell the camera to turn on and take pictures in OpenCV
       //Serial.println("Motion detected. Switching to camera.");
       pirState = HIGH; //Change state.
+
+      //Arduino then enters read mode (starts waiting for Jun Ho’s python/OpenCV to say when NO PEOPLE are detected by the camera)
+      //Not writing to python at this time (unidirectional transfer)
+      
+
+      
     }
     
   } else { //Motion not detected:
