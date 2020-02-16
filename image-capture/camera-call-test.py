@@ -1,4 +1,4 @@
-import camera
+import Camera
 import time
 
 for x in range(0, 3):
