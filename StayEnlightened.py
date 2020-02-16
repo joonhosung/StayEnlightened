@@ -41,7 +41,9 @@ class StayEnlightened:
         updateRate = 10
         ser = serial.Serial(port, 9600)
         while True:
-            if(motion.read
+            if motion.read_serial(ser) == '1':
+                self.camState = True
+                
             currentTime = time.time()
             timeDiff = currentTime - startTime
             if timeDiff <= updateRate:
