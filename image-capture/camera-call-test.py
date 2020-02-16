@@ -1,4 +1,4 @@
 import camera
 
-camera()
+camera.capture()
 print("Took a picture.")
