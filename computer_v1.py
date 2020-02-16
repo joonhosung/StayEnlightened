@@ -7,7 +7,8 @@ from time import sleep
 port='/dev/tty96B0'
 ser = serial.Serial(port, 9600) # Establish the connection on a specific port
 
-def check_motion(state, turnOff):
+def check_motion(state, turnOff, detected):
+    
 	
 	#port='COM6'
 	# have to specify port name below
@@ -16,12 +17,12 @@ def check_motion(state, turnOff):
 		# inactive state
 		# The computer will continuously read string from serial
 
-		rsv=read_serial(ser)
+		#rsv=read_serial(ser)
 
 		# if serial signals to start camera [1], return to external
-		if rsv=='1':
-			print("Motion detected! Turning on Camera.")
-			state=True
+                if detected == '1': #rsv=='1':
+                        print("Motion detected! Turning on Camera.")
+                        state=True
 			
 	elif state==True:
 		# inactive state
@@ -45,9 +46,10 @@ def check_motion(state, turnOff):
 
 
 def read_serial(ser):
-	msg=str(ser.readline().strip().decode('ascii')) # reads from Arduino and interpret as ascii
-	print("Reads in from Arduino "+msg)
-	return msg
+        msg=str(ser.readline().strip().decode('ascii')) # reads from Arduino and interpret as ascii
+        if(msg == '1'):
+                print("Reads in from Arduino "+msg)
+        return msg
 
 def write_serial(ser):
         # ser is the serial object; s is the data to be serially transmitted

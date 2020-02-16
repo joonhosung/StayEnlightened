@@ -1,5 +1,5 @@
 # Main file where everything will happen
-
+import serial
 from MongoInterface import MongoInterface
 from peoplecount import PeopleCount
 from datetime import datetime
@@ -28,6 +28,7 @@ class StayEnlightened:
         print("Starting...\n\n")
 
     def loop(self):
+        print("Taking pic")
         self.camera.capture()
         self.currentPeople = self.people.count_people()
         self.database.updateCurrent(self.currentPeople)
@@ -39,11 +40,15 @@ class StayEnlightened:
         printed = False
         off = False
         updateRate = 10
+        port='/dev/tty96B0'
         ser = serial.Serial(port, 9600)
+        detected = '0'
         while True:
-            if motion.read_serial(ser) == '1':
+            if detected == '0':
+                detected = motion.read_serial(ser)
+            if detected == '1':
                 self.camState = True
-                
+            
             currentTime = time.time()
             timeDiff = currentTime - startTime
             if timeDiff <= updateRate:
@@ -64,11 +69,14 @@ class StayEnlightened:
                     elif self.currentPeople == 0:
                         off = True
                         self.camState = False
+                        detected = '0'
+                        motion.write_serial(ser)
+                        print("cam turned off")
                 else:
-                    self.camState = motion.check_motion(self.camState, off)
-                    if self.camState:
-                        pass
-                        #off = True
+                    self.camState = motion.check_motion(self.camState, off, detected)
+                    if not self.camState:
+                        detected = '0'
+                print("Motion detecting is:", detected)
                 print("Updated at:", dateTime)
 
 light = StayEnlightened()
